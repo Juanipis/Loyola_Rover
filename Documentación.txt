@@ -1,0 +1,9 @@
+Para usar este programa desarollado por el equipo de programadores de rovoution loyola team
+debes tener en cuenta lo siguiente
+
+El carro recibiria señales por medio de sockets que se traducen así:
+A = Hacia Adelante
+B = Hacia Atras
+L = Hacia la izquierda
+R = Hacia la derecha
+
