@@ -59,7 +59,13 @@ try:
 		data = clientsocket.recv(1024)
 		if not data: break
 		cmd = (data.decode('utf-8'))
-		
+		if cmd == "final":
+			pwm_a.stop()
+			pwm_b.stop()
+			GPIO.cleanup()
+			clientsocket.close()
+			break
+
 		cmd = cmd.lower()
 		motor = cmd[0]
 		direccion =cmd[1]
@@ -69,7 +75,7 @@ try:
 			if direccion == "f":
 				Giro_Favor_Reloj_MotorA()
 				print("motor A, CW, vel="+velocidad)
-			elif direccion== "r":
+			elif direccion == "r":
 				Giro_Contra_Reloj_MotorA()
 				print("motor A, CCW, vel="+velocidad)
 			else:
@@ -91,10 +97,12 @@ try:
 			print
 			print("comando no reconocido")
 			print
+
 except KeyboardInterrupt:
 	pwm_a.stop()
 	pwm_b.stop()
 	GPIO.cleanup()
+	clientsocket.close()
 	os.system('clear')
 	print
 	print("Programa Terminado por el usuario")
