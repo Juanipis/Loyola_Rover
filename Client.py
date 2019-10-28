@@ -48,7 +48,7 @@ def stop(event):
     running_motor_1 = False
     running_motor_2 = False
     running_backwards = False
-    clientSocket.send(bytes("Detenido", 'utf-8'))
+    clientSocket.send(bytes("stop", 'utf-8'))
 
 
 def move(speed, clientsocket):
@@ -127,8 +127,7 @@ def enter_ip(rover_main):
     Label(ip_window, text="Por favor ingresa la direccion ip del rover").grid(row=0, column=0)
     ip_server = Entry(ip_window)
     ip_server.grid(row=1, column=0)
-    send_ip = Button(ip_window, text="Conectar", command=lambda: validate_ip(ip_server, ip_window)).grid(row=2,
-                                                                                                         column=0)
+    send_ip = Button(ip_window, text="Conectar", command=lambda: validate_ip(ip_server, ip_window)).grid(row=2, column=0)
 
 
 # ---------------------------------------------------------------------------------------#

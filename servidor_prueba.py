@@ -14,6 +14,6 @@ clientsocket, clientaddress = serversocket.accept()
 print ('Conexion desde: ', clientaddress)
 while 1:
         data = clientsocket.recv(1024) 
-        print('cliente %s' % data)
+        print(data.decode('utf-8'))
         if not data: break
 clientsocket.close() 

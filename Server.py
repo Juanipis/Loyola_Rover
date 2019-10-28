@@ -37,23 +37,23 @@ def forward(speed):
     GPIO.output(in2, True)
     GPIO.output(in3, False)
     GPIO.output(in3, True)
-    pwm_a.ChangeDutyCycle(int(speed))
-    pwm_b.ChangeDutyCycle(int(speed))
+    pwm_a.ChangeDutyCycle(speed)
+    pwm_b.ChangeDutyCycle(speed)
 
 def backward(speed):
     GPIO.output(in1, True)
     GPIO.output(in2, False)
     GPIO.output(in3, True)
     GPIO.output(in3, False)
-    pwm_a.ChangeDutyCycle(int(speed))
-    pwm_b.ChangeDutyCycle(int(speed))
+    pwm_a.ChangeDutyCycle(speed)
+    pwm_b.ChangeDutyCycle(speed)
 
 def left(speed):
     GPIO.output(in1, False)
     GPIO.output(in2, True)
     GPIO.output(in3, False)
     GPIO.output(in3, True)
-    pwm_a.ChangeDutyCycle(int(speed))
+    pwm_a.ChangeDutyCycle(speed)
     pwm_b.ChangeDutyCycle(int(0))
 
 def right(speed):
@@ -84,8 +84,10 @@ while True:
     data = clientsocket.recv(1024)
     data_decoded = data.decode('utf-8')
     if not data: break
+    if (data == "stop"):
+        stop()
     direction = data_decoded[0]
-    speed = data_decoded[1:5]
+    speed = data_decoded[1:2]
     if direction == 'A':
         forward(speed)
     elif direction == 'B':
